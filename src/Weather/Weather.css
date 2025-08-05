@@ -7,10 +7,10 @@
 
 .weather-container {
     min-height: 100vh;
-    background: linear-gradient(135deg, #e6e6fa 0%, #d8bfd8 100%);
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    margin-top: 100px;
     padding: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
