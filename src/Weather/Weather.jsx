@@ -46,7 +46,7 @@ const Weather = () => {
   }
 
   useEffect(() => {
-    search('chennai')
+    search('Trichy')
   }, [])
 
   return (
