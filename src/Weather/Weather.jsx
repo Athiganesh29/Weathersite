@@ -1,75 +1,42 @@
 import searchIcon from '../assets/searchicon.jpeg'
 import './Weather.css'
-import { useEffect, useState, useRef } from 'react'
-import React from 'react'
+import img from '../assets/sun.png'
 
 const Weather = () => {
-  const inputref=useRef()
-  const [weatherData, setWeatherData] = useState(false);
-  const allicon={
-    "01d": "☀️",
-    "02d": "⛅",
-    "03d": "☁️",
-    "04d": "☁",
-    "09d": "🌧️",
-    "10d": "🌧️",
-    "11d": "🌩️",
-    "13d": "❄️",
-    "50d": "🌫️",
-  }
-
- const search= async(city) => {
-  try {
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metrics&appid=${import.meta.env.VITE_APP_ID}&units=metric`;
-;
-    const response = await fetch(url);
-    const data = await response.json();
-    const icon=allicon[data.weather[0].icon] || "☀️";
-    setWeatherData({
-      temp:  Math.floor(data.main.temp),
-      city:data.name,
-      humidity:data.main.humidity,
-      windSpeed:data.wind.speed,
-      icon:icon,
-    }) 
-  } catch (error) {
-    alert('Please enter a valid city name');
-  }
-
- }
- useEffect(() => {
-  search('chennai');}, []);
-
-
   return (
     <div className="weather-container">
       <div className="weather-card">
+        {/* Search Bar */}
         <div className="search-section">
           <div className="search-bar">
-            <input ref={inputref} type="text" placeholder="Search" />
-            <button  onClick={() => search(inputref.current.value)} className="search-button">
+            <input type="text" placeholder="Search" />
+            <button className="search-button">
               <img src={searchIcon} alt="search" />
             </button>
           </div>
         </div>
+
+        {/* Weather Icon */}
         <div className="weather-icon">
-          <div className="sun-icon">{weatherData.icon}</div>
+          <div className="sun-icon">☀️</div>
         </div>
 
-        <div className="temperature">{weatherData.temp}°C</div>
+        {/* Temperature */}
+        <div className="temperature">16°C</div>
 
-   
-        <div className="location">{weatherData.city}</div>
+        {/* Location */}
+        <div className="location">London</div>
 
+        {/* Weather Details */}
         <div className="weather-details">
           <div className="detail-item">
             <div className="detail-icon">💧</div>
-            <div className="detail-value">{weatherData.humidity}%</div>
+            <div className="detail-value">91%</div>
             <div className="detail-label">Humidity</div>
           </div>
           <div className="detail-item">
             <div className="detail-icon">💨</div>
-            <div className="detail-value">{weatherData.windSpeed} Km/h</div>
+            <div className="detail-value">3.6 Km/h</div>
             <div className="detail-label">Wind Speed</div>
           </div>
         </div>
